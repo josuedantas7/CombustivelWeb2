@@ -41,19 +41,21 @@ function App() {
 
   return (
     <>
-      <div className='bg-blue-500 h-screen'>
-        <img src={logo} className="w-[200px] h-[200px] mx-auto"/>
-        <div className="text-2xl my-4 text-white text-center">
-          <h1>Você sabe com qual combustível compensa mais abastecer seu carro?</h1>
-          <h1>Utilize calculadora abaixo:</h1>
+      <div className='bg-blue-500 h-screen px-48 max-[990px]:px-16 max-[600px]:px-3 p-3'>
+        <div className="w-full h-[600px] border-2 rounded-2xl">
+          <img src={logo} className="w-[200px] h-[200px] mx-auto"/>
+          <div className="text-2xl my-4 text-white text-center max-[430px]:text-lg">
+            <h1>Você sabe com qual combustível compensa mais abastecer seu carro?</h1>
+            <h1 className="mt-2">Utilize calculadora abaixo:</h1>
+          </div>
+          <div className="flex justify-center flex-col items-center">
+            <LabelInput label="Preço - litro etanol (R$):" onChange={setEtanol}/>
+            <LabelInput label="Preço - litro gasolina (R$):" onChange={setGasolina}/>
+            <Button onSubmit={onSubmit}/>
+          </div>
         </div>
-        <div className="flex justify-center flex-col items-center">
-          <LabelInput label="Preço - litro etanol (R$):" onChange={setEtanol}/>
-          <LabelInput label="Preço - litro gasolina (R$):" onChange={setGasolina}/>
-          <Button onSubmit={onSubmit}/>
+        {toggleModal ? <Modal setToggleModal={setToggleModal} message={messageModal}/> : null}
         </div>
-      </div>
-      {toggleModal ? <Modal setToggleModal={setToggleModal} message={messageModal}/> : null}
     </>
   )
 }
