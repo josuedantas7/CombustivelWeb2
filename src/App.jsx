@@ -12,8 +12,8 @@ function App() {
   const [toggleModal, setToggleModal] = useState(false)
   const [messageModal, setMessageModal] = useState('')
 
-  function onSubmit(){
-
+  function onSubmit(e){
+    e.preventDefault()
     if (etanol === null || gasolina === null || etanol === '' || gasolina === '' || etanol === 0 || gasolina === 0){
       setToggleModal(true)
       setMessageModal('Por favor, preencha todos os campos')
@@ -38,9 +38,9 @@ function App() {
             <h1 className="mt-2">Utilize calculadora abaixo:</h1>
           </div>
           <div className="flex justify-center flex-col items-center">
-            <LabelInput label="Preço - litro etanol (R$):" onChange={setEtanol}/>
-            <LabelInput label="Preço - litro gasolina (R$):" onChange={setGasolina}/>
-            <Button onSubmit={onSubmit}/>
+            <LabelInput onSubmit={(e) => onSubmit(e)} label="Preço - litro etanol (R$):" onChange={setEtanol}/>
+            <LabelInput onSubmit={(e) => onSubmit(e)} label="Preço - litro gasolina (R$):" onChange={setGasolina}/>
+            <Button onSubmit={(e) => onSubmit(e)}/>
           </div>
         </div>
         {toggleModal ? <Modal setToggleModal={setToggleModal} message={messageModal}/> : null}

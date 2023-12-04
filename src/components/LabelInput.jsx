@@ -1,11 +1,13 @@
 import InputPrimario from './InputPrimario'
 import PropTypes from 'prop-types';
 
-const LabelInput = ({onChange,label}) => {
+const LabelInput = ({onChange,label, onSubmit}) => {
   return (
     <div className='text-center text-white font-bold'>
+      <form onSubmit={(e) => onSubmit(e)}>
         <label>{label}</label>
         <InputPrimario onChange={onChange} />
+      </form>
     </div>
   )
 }
