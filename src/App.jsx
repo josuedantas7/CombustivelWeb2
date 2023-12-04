@@ -14,17 +14,6 @@ function App() {
 
   function onSubmit(){
 
-    let etanolNumber = Number(etanol)
-    let gasolinaNumber = Number(gasolina) 
-
-    if (etanolNumber > 1000 && etanol.includes(",")){
-      setEtanol(etanol.replace(",", ""))
-      console.log('etanol com virgula')
-    } else if (gasolinaNumber && gasolina.includes(",")){
-      setGasolina(gasolina.replace(",", ""))
-      console.log('gasolina com virgula')
-    }
-
     if (etanol === null || gasolina === null || etanol === '' || gasolina === '' || etanol === 0 || gasolina === 0){
       setToggleModal(true)
       setMessageModal('Por favor, preencha todos os campos')

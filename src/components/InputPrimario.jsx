@@ -12,5 +12,4 @@ export default InputPrimario
 
 InputPrimario.propTypes = {
     onChange: PropTypes.func.isRequired,
-    value: PropTypes.number.isRequired,
 };

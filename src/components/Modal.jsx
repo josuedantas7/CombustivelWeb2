@@ -1,22 +1,37 @@
 import PropTypes from 'prop-types'
 
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
+
+import { GoAlert } from "react-icons/go";
 
 const Modal = ({message, setToggleModal}) => {
 
     const [isOpen, setIsOpen] = useState(true)
+    const [alert, setAlert] = useState(false)
+
+
+    useEffect(() => {
+      lookingAlert()
+    },[])
+
+    function lookingAlert(){
+      if (message === 'Por favor, preencha todos os campos'){
+        setAlert(true)
+      }
+    }
 
     function closeModal() {
       setIsOpen(false)
-      setToggleModal(false)
+      setTimeout(() => {
+        setToggleModal(false)
+      },500)
     }
 
   return (
     <>
       <div className="fixed inset-0 flex items-center justify-center">
       </div>
-
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
@@ -44,6 +59,7 @@ const Modal = ({message, setToggleModal}) => {
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <div className="mt-2">
+                    {alert ? <GoAlert className="text-5xl flex w-full justify-center mb-4 text-red-500"/> : null}
                     <p className="text-sm text-gray-500">
                       {message}
                     </p>
